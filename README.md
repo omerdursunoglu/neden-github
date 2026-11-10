@@ -9,6 +9,7 @@ Kuzenime ve yazılıma yeni başlayanlara GitHub'ın önemini anlatmak için haz
 - 💼 **Yazılımcı Portfolyosu:** Projeleri sergileme ve CV oluşturma.
 - 🌍 **Açık Kaynak:** Dünyanın dört bir yanındaki projeleri inceleme ve katkıda bulunma.
 - 💻 **Terminal Hızlı Kılavuzu:** En çok kullanılan 4 temel Git komutu ve tek tıkla kopyalama özelliği.
+- 🧠 **İnteraktif Quiz:** Öğrenilen Git ve GitHub kavramlarını sınayan mini test ve skor hesaplayıcı.
 
 ---
 

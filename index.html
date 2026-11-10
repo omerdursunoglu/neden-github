@@ -286,6 +286,107 @@
       border-color: #58a6ff;
     }
 
+    /* Quiz Stilleri */
+    .quiz-container {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 15px;
+    }
+
+    .quiz-question {
+      margin-bottom: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #21262d;
+    }
+
+    .quiz-question:last-of-type {
+      border-bottom: none;
+      margin-bottom: 10px;
+    }
+
+    .quiz-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin-bottom: 14px;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quiz-btn {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      padding: 12px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      text-align: left;
+      transition: all 0.2s;
+    }
+
+    .quiz-btn:hover:not(:disabled) {
+      border-color: #58a6ff;
+      background: #1c2128;
+    }
+
+    .quiz-btn.correct {
+      background: rgba(35, 134, 54, 0.2);
+      border-color: #2ea043;
+      color: #7ee787;
+      font-weight: 600;
+    }
+
+    .quiz-btn.wrong {
+      background: rgba(218, 54, 51, 0.2);
+      border-color: #da3633;
+      color: #f85149;
+    }
+
+    .quiz-feedback {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .quiz-summary {
+      background: #0d1117;
+      border: 1px solid #238636;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .quiz-summary h3 {
+      color: #7ee787;
+      margin-bottom: 8px;
+    }
+
+    .quiz-reset-btn {
+      background: #238636;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .quiz-reset-btn:hover {
+      background: #2ea043;
+    }
+
     /* Alt Bilgi */
     footer {
       text-align: center;
@@ -465,6 +566,46 @@
       </div>
     </div>
 
+    <!-- 5. BÖLÜM: KUZENİ TEST ET (MİNİ QUİZ) -->
+    <h2 class="section-title">🧠 Mini Quiz: Bakalım Ne Kadar Öğrendin?</h2>
+    <div class="quiz-container">
+      <div class="quiz-question" id="q1">
+        <p class="quiz-title">1. Bilgisayarına kahve döküldü ve açılmıyor. Kodlarına ne olur?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(1, 0, false, this)">A) Ağlarım, projelerim çöp oldu 😭</button>
+          <button class="quiz-btn" onclick="answer(1, 1, false, this)">B) Bilgisayarcı belki kurtarır diye beklerim ☕</button>
+          <button class="quiz-btn" onclick="answer(1, 2, true, this)">C) Yeni bilgisayardan <code>git clone</code> ile anında indiririm! 🚀</button>
+        </div>
+        <div class="quiz-feedback" id="feedback-1"></div>
+      </div>
+
+      <div class="quiz-question" id="q2">
+        <p class="quiz-title">2. Projene çılgın bir fikir eklemek istiyorsun ama çalışan kodu bozmaktan korkuyorsun. Ne yaparsın?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(2, 0, false, this)">A) Dosyaları "kopya_son_v3.zip" diye masaüstüne kopyalarım 📁</button>
+          <button class="quiz-btn" onclick="answer(2, 1, true, this)">B) Yeni bir <code>branch</code> (dal) açıp orada özgürce denerim 🌿</button>
+          <button class="quiz-btn" onclick="answer(2, 2, false, this)">C) Korkudan fikrimden vazgeçerim 🙈</button>
+        </div>
+        <div class="quiz-feedback" id="feedback-2"></div>
+      </div>
+
+      <div class="quiz-question" id="q3">
+        <p class="quiz-title">3. Teknoloji şirketleri bir yazılımcı alırken en çok neye dikkat eder?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="answer(3, 0, true, this)">A) GitHub'da geliştirdiği projelere ve kod kalitesine 💻</button>
+          <button class="quiz-btn" onclick="answer(3, 1, false, this)">B) Ne kadar hızlı klavye kullandığına ⌨️</button>
+          <button class="quiz-btn" onclick="answer(3, 2, false, this)">C) Masaüstü duvar kağıdının ne olduğuna 🖼️</button>
+        </div>
+        <div class="quiz-feedback" id="feedback-3"></div>
+      </div>
+
+      <div class="quiz-summary" id="quiz-summary" style="display: none;">
+        <h3>🏆 Test Tamamlandı!</h3>
+        <p id="quiz-score-text" style="color: #c9d1d9; font-size: 1.1rem; margin: 8px 0;"></p>
+        <button class="quiz-reset-btn" onclick="resetQuiz()">Yeniden Çöz 🔄</button>
+      </div>
+    </div>
+
     <footer>
       <p>Özetle: <strong>GitHub, her yazılımcının en iyi dostudur!</strong> 💻✨</p>
       <a href="https://github.com/omerdursunoglu/neden-github" target="_blank" class="badge">Bu Projenin GitHub Reposu</a>
@@ -495,6 +636,69 @@
         btn.style.color = "";
         btn.style.borderColor = "";
       }, 1500);
+    }
+
+    // Mini Quiz Mantığı
+    let score = 0;
+    let answeredCount = 0;
+    const totalQuestions = 3;
+
+    function answer(qNum, optIdx, isCorrect, btn) {
+      const parent = document.getElementById('q' + qNum);
+      const buttons = parent.querySelectorAll('.quiz-btn');
+      const feedback = document.getElementById('feedback-' + qNum);
+
+      // Butonları devre dışı bırak
+      buttons.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        feedback.innerHTML = "🎉 Harika! Kesinlikle doğru cevap.";
+        feedback.style.color = "#7ee787";
+        feedback.style.background = "rgba(35, 134, 54, 0.15)";
+        feedback.style.display = "block";
+        score++;
+      } else {
+        btn.classList.add('wrong');
+        feedback.innerHTML = "❌ Yanlış! Doğru cevap GitHub gücünü kullanan seçenekti.";
+        feedback.style.color = "#f85149";
+        feedback.style.background = "rgba(218, 54, 51, 0.15)";
+        feedback.style.display = "block";
+      }
+
+      answeredCount++;
+      if (answeredCount === totalQuestions) {
+        showQuizSummary();
+      }
+    }
+
+    function showQuizSummary() {
+      const summary = document.getElementById('quiz-summary');
+      const text = document.getElementById('quiz-score-text');
+      summary.style.display = "block";
+      if (score === 3) {
+        text.innerHTML = "Skor: <strong>3/3</strong> ⭐ — Kusursuz! Sen doğuştan bir GitHub uzmanısın.";
+      } else if (score === 2) {
+        text.innerHTML = "Skor: <strong>2/3</strong> 👍 — Çok iyi! Birkaç detayı daha kaparsan süper olacak.";
+      } else {
+        text.innerHTML = "Skor: <strong>" + score + "/3</strong> 📚 — Sayfayı yukarıdan aşağıya bir kez daha inceleyip tekrar dene!";
+      }
+    }
+
+    function resetQuiz() {
+      score = 0;
+      answeredCount = 0;
+      for (let i = 1; i <= totalQuestions; i++) {
+        const parent = document.getElementById('q' + i);
+        const buttons = parent.querySelectorAll('.quiz-btn');
+        buttons.forEach(b => {
+          b.disabled = false;
+          b.classList.remove('correct', 'wrong');
+        });
+        const feedback = document.getElementById('feedback-' + i);
+        feedback.style.display = "none";
+      }
+      document.getElementById('quiz-summary').style.display = "none";
     }
   </script>
 </body>
