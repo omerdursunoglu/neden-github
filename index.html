@@ -188,6 +188,104 @@
       line-height: 1.4;
     }
 
+    /* Terminal Komut Rehberi */
+    .terminal-window {
+      background: #090d13;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      overflow: hidden;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      margin-top: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .terminal-header {
+      background: #161b22;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #30363d;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot.red { background: #ff5f56; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #27c93f; }
+
+    .terminal-title {
+      color: #8b949e;
+      font-size: 0.85rem;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: inherit;
+    }
+
+    .terminal-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cmd-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: #13171f;
+      border: 1px solid #21262d;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .cmd-line:hover {
+      border-color: #58a6ff;
+      background: #161b22;
+    }
+
+    .cmd-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cmd-prompt {
+      color: #7ee787;
+      font-weight: bold;
+    }
+
+    .cmd-text {
+      color: #f0f6fc;
+      font-weight: 600;
+    }
+
+    .cmd-desc {
+      color: #8b949e;
+      font-size: 0.85rem;
+    }
+
+    .copy-btn {
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #30363d;
+      color: #58a6ff;
+      border-color: #58a6ff;
+    }
+
     /* Alt Bilgi */
     footer {
       text-align: center;
@@ -311,6 +409,62 @@
       </div>
     </div>
 
+    <!-- 4. BÖLÜM: EN ÇOK KULLANILAN 4 GİT KOMUTU (MOCKUP TERMINAL) -->
+    <h2 class="section-title">💻 En Çok Kullanılan 4 Git Komutu</h2>
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="terminal-title">zsh — git-cheat-sheet</span>
+      </div>
+      <div class="terminal-body">
+        <div class="cmd-line">
+          <div class="cmd-left">
+            <span class="cmd-prompt">➜</span>
+            <div>
+              <span class="cmd-text">git status</span>
+              <span class="cmd-desc">— Hangi dosyalarda değişiklik yaptığını gösterir</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyCmd('git status', this)">Kopyala</button>
+        </div>
+
+        <div class="cmd-line">
+          <div class="cmd-left">
+            <span class="cmd-prompt">➜</span>
+            <div>
+              <span class="cmd-text">git add .</span>
+              <span class="cmd-desc">— Tüm değişiklikleri kayda hazır hale getirir (paketler)</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyCmd('git add .', this)">Kopyala</button>
+        </div>
+
+        <div class="cmd-line">
+          <div class="cmd-left">
+            <span class="cmd-prompt">➜</span>
+            <div>
+              <span class="cmd-text">git commit -m "Mesajın"</span>
+              <span class="cmd-desc">— Değişikliği bir başlıkla kalıcı olarak kaydeder</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyCmd('git commit -m &quot;Guncelleme yapildi&quot;', this)">Kopyala</button>
+        </div>
+
+        <div class="cmd-line">
+          <div class="cmd-left">
+            <span class="cmd-prompt">➜</span>
+            <div>
+              <span class="cmd-text">git push</span>
+              <span class="cmd-desc">— Değişiklikleri GitHub bulutuna gönderir</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyCmd('git push', this)">Kopyala</button>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>Özetle: <strong>GitHub, her yazılımcının en iyi dostudur!</strong> 💻✨</p>
       <a href="https://github.com/omerdursunoglu/neden-github" target="_blank" class="badge">Bu Projenin GitHub Reposu</a>
@@ -328,6 +482,19 @@
       document.querySelectorAll('.sim-btn').forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
       document.getElementById('solution').innerHTML = solutions[key];
+    }
+
+    function copyCmd(cmd, btn) {
+      navigator.clipboard.writeText(cmd);
+      const originalText = btn.innerText;
+      btn.innerText = "Kopyalandı! ✓";
+      btn.style.color = "#7ee787";
+      btn.style.borderColor = "#7ee787";
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.color = "";
+        btn.style.borderColor = "";
+      }, 1500);
     }
   </script>
 </body>
